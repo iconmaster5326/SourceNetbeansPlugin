@@ -1,0 +1,4 @@
+//comment
+@directive
+local x = y + 1.2 as int
+local str = "1+1"
