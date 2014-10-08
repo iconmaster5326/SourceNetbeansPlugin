@@ -3,6 +3,7 @@ package com.iconmaster.srcplugin.parser;
 import com.iconmaster.source.element.Element;
 import com.iconmaster.source.exception.SourceException;
 import com.iconmaster.source.tokenize.Tokenizer;
+import com.iconmaster.source.validate.Validator;
 import java.util.ArrayList;
 import javax.swing.event.ChangeListener;
 import org.netbeans.modules.parsing.api.Snapshot;
@@ -23,12 +24,16 @@ public class SourceParser extends Parser {
 	public void parse(Snapshot snapshot, Task task, SourceModificationEvent event) {
 		this.snapshot = snapshot;
 		input = snapshot.getText().toString();
+		parsed = null;
+		ex.clear();
 		try {
 			parsed = com.iconmaster.source.parse.Parser.parse(Tokenizer.tokenize(input));
-			ex.clear();
 		} catch (SourceException ex2) {
-			//Logger.getLogger(SourceParser.class.getName()).log (Level.WARNING, null, ex);
 			ex.add(ex2);
+		}
+		
+		if (parsed != null) {
+			ex.addAll(Validator.validate(parsed));
 		}
 	}
 
