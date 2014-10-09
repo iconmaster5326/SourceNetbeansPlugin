@@ -35,17 +35,13 @@
             </folder>
         </folder>
     </folder>
-	<folder name="Editors">
-        <folder name="text">
-            <folder name="x-srclang">
-                <file name="com-iconmaster-srcplugin-parser-SourceParserFactory.instance"/>
-            </folder>
-        </folder>
-    </folder>
     <folder name="Editors">
         <folder name="text">
             <folder name="x-srclang">
+				<file name="com-iconmaster-srcplugin-parser-SourceParserFactory.instance"/>
                 <file name="com-iconmaster-srcplugin-parser-SourceErrorTaskFactory.instance"/>
+				<file name="com-iconmaster-srcplugin-editor-SourceBreakInterceptorFactory.instance"/>
+				<file name="com-iconmaster-srcplugin-editor-SourceIndentFactory.instance"/>
             </folder>
         </folder>
     </folder>
