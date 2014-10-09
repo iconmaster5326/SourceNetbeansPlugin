@@ -2,6 +2,7 @@ package com.iconmaster.srcplugin.parser;
 
 import com.iconmaster.source.element.Element;
 import com.iconmaster.source.exception.SourceException;
+import com.iconmaster.source.prototype.Prototyper;
 import com.iconmaster.source.tokenize.Tokenizer;
 import com.iconmaster.source.validate.Validator;
 import java.util.ArrayList;
@@ -33,7 +34,12 @@ public class SourceParser extends Parser {
 		}
 		
 		if (parsed != null) {
-			ex.addAll(Validator.validate(parsed));
+			ArrayList<SourceException> valErr = Validator.validate(parsed);
+			ex.addAll(valErr);
+			if (valErr.isEmpty()) {
+				Prototyper.PrototypeResult pres = Prototyper.prototype(parsed);
+				ex.addAll(pres.errors);
+			}
 		}
 	}
 
