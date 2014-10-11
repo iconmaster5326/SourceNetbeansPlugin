@@ -25,9 +25,13 @@ public class SourceIndentFactory implements IndentTask.Factory {
 
 		@Override
 		public void reindent() throws BadLocationException {
-			int off = ctx.lineStartOffset(ctx.endOffset());
-			int tabs = ctx.lineIndent(off);
-			ctx.modifyIndent(ctx.endOffset()+1, tabs);
+//			int thisOff = ctx.caretOffset();
+//			int lastOff = ctx.lineStartOffset(thisOff-1);
+//			int tabs = ctx.lineIndent(lastOff);
+//			ctx.modifyIndent(thisOff, tabs);
+//			StatusDisplayer.getDefault().setStatusText("TABBIN "+thisOff+" "+lastOff+" "+tabs);
+			
+			new SourceReformatFactory().createTask(ctx).reformat();
 		}
 
 		@Override
