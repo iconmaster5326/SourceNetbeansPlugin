@@ -1,9 +1,13 @@
 package com.iconmaster.srcplugin.parser;
 
+import com.iconmaster.source.compile.SourceCompiler;
+import com.iconmaster.source.compile.TypeChecker;
 import com.iconmaster.source.element.Element;
 import com.iconmaster.source.exception.SourceException;
+import com.iconmaster.source.link.Linker;
 import com.iconmaster.source.prototype.Prototyper;
 import com.iconmaster.source.tokenize.Tokenizer;
+import com.iconmaster.source.util.Range;
 import com.iconmaster.source.validate.Validator;
 import java.util.ArrayList;
 import javax.swing.event.ChangeListener;
@@ -39,6 +43,14 @@ public class SourceParser extends Parser {
 			if (valErr.isEmpty()) {
 				Prototyper.PrototypeResult pres = Prototyper.prototype(parsed);
 				ex.addAll(pres.errors);
+				Linker linker = Linker.link("HPPL", pres.result);
+				if (!linker.unresolvedImports.isEmpty()) {
+					for (String str : linker.unresolvedImports) {
+						ex.add(new SourceException(new Range(0,1), "Unresolved import "+str));
+					}
+				}
+				SourceCompiler.compile(linker.pkg);
+				ex.addAll(TypeChecker.check(linker.pkg));
 			}
 		}
 	}
