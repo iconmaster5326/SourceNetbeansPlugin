@@ -45,10 +45,15 @@ public class SourceLogicalView implements LogicalViewProvider {
 		public Action[] getActions(boolean arg0) {
 			return new Action[]{
 				CommonProjectActions.newFileAction(),
+				CommonProjectActions.setProjectConfigurationAction(),
+				CommonProjectActions.setAsMainProjectAction(),
+				CommonProjectActions.openSubprojectsAction(),
+				CommonProjectActions.closeProjectAction(),
+				CommonProjectActions.renameProjectAction(),
+				CommonProjectActions.moveProjectAction(),
 				CommonProjectActions.copyProjectAction(),
 				CommonProjectActions.deleteProjectAction(),
 				CommonProjectActions.customizeProjectAction(),
-				CommonProjectActions.closeProjectAction()
 			};
 		}
 

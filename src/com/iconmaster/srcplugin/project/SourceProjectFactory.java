@@ -16,7 +16,7 @@ public class SourceProjectFactory implements ProjectFactory {
 
 	@Override
 	public boolean isProject(FileObject dir) {
-		return dir.getFileObject("proj.src")!=null;
+		return dir.getFileObject("src-project.xml")!=null;
 	}
 
 	@Override
