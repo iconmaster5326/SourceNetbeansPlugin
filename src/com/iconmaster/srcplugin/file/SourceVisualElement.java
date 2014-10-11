@@ -14,7 +14,7 @@ import org.openide.windows.TopComponent;
 
 @MultiViewElement.Registration(
 		displayName = "#LBL_Source_VISUAL",
-		iconBase = "com/iconmaster/srcplugin/file/src-icon.png",
+		iconBase = "com/iconmaster/srcplugin/src-icon.png",
 		mimeType = "text/x-srclang",
 		persistenceType = TopComponent.PERSISTENCE_NEVER,
 		preferredID = "SourceVisual",

@@ -96,7 +96,7 @@ public class SourceDataObject extends MultiDataObject {
 
 	@MultiViewElement.Registration(
 			displayName = "#LBL_Source_EDITOR",
-			iconBase = "com/iconmaster/srcplugin/file/src-icon.png",
+			iconBase = "com/iconmaster/srcplugin/src-icon.png",
 			mimeType = "text/x-srclang",
 			persistenceType = TopComponent.PERSISTENCE_ONLY_OPENED,
 			preferredID = "Source",
