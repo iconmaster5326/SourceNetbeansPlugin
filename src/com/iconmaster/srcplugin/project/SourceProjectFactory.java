@@ -2,11 +2,14 @@ package com.iconmaster.srcplugin.project;
 
 import com.iconmaster.source.xml.XMLHelper;
 import java.io.IOException;
+import javax.swing.ImageIcon;
 import org.netbeans.api.project.Project;
-import org.netbeans.spi.project.ProjectFactory;
+import org.netbeans.api.project.ProjectManager;
+import org.netbeans.spi.project.ProjectFactory2;
 import org.netbeans.spi.project.ProjectState;
 import org.openide.awt.StatusDisplayer;
 import org.openide.filesystems.FileObject;
+import org.openide.util.ImageUtilities;
 import org.openide.util.lookup.ServiceProvider;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -15,8 +18,8 @@ import org.w3c.dom.Element;
  *
  * @author iconmaster
  */
-@ServiceProvider(service=ProjectFactory.class)
-public class SourceProjectFactory implements ProjectFactory {
+@ServiceProvider(service=ProjectFactory2.class)
+public class SourceProjectFactory implements ProjectFactory2 {
 
 	@Override
 	public boolean isProject(FileObject dir) {
@@ -41,6 +44,11 @@ public class SourceProjectFactory implements ProjectFactory {
 	@Override
 	public void saveProject(Project project) throws IOException, ClassCastException {
 		
+	}
+
+	@Override
+	public ProjectManager.Result isProject2(FileObject projectDirectory) {
+		return new ProjectManager.Result("Source","Source", new ImageIcon(ImageUtilities.loadImage("com/iconmaster/srcplugin/src-project-icon.png")));
 	}
 	
 }
