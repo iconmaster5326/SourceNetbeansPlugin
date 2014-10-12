@@ -18,6 +18,7 @@ import javax.swing.JComponent;
 import javax.swing.event.ChangeListener;
 import org.netbeans.api.project.ProjectManager;
 import org.netbeans.api.templates.TemplateRegistration;
+import org.netbeans.spi.project.support.ant.ProjectGenerator;
 import org.netbeans.spi.project.ui.support.ProjectChooser;
 import org.netbeans.spi.project.ui.templates.support.Templates;
 import org.openide.WizardDescriptor;
@@ -66,7 +67,9 @@ public class SourceProjectSampleWizardIterator implements WizardDescriptor./*Pro
 
 		FileObject template = Templates.getTemplate(wiz);
 		FileObject dir = FileUtil.toFileObject(dirF);
+		ProjectGenerator.createProject(dir, "Source");
 		unZipFile(template.getInputStream(), dir);
+		dir.createFolder("src");
 
 		// Always open top dir as a project:
 		resultSet.add(dir);

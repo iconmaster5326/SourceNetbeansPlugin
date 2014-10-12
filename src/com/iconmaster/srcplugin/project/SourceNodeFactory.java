@@ -33,12 +33,16 @@ public class SourceNodeFactory implements NodeFactory {
 
 		@Override
 		public List<Node> keys() {
-			FileObject textsFolder = project.getProjectDirectory().getFileObject("src");
+			FileObject textsFolder = project.getProjectDirectory();
 			List<Node> result = new ArrayList<Node>();
 			if (textsFolder != null) {
 				for (FileObject textsFolderFile : textsFolder.getChildren()) {
 					try {
-						result.add(DataObject.find(textsFolderFile).getNodeDelegate());
+						if (textsFolderFile.getName().equals("src")) {
+							Node fold = DataObject.find(textsFolderFile).getNodeDelegate();
+							fold.setDisplayName("Source Files");
+							result.add(fold);
+						}
 					} catch (DataObjectNotFoundException ex) {
 						Exceptions.printStackTrace(ex);
 					}
