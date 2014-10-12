@@ -26,7 +26,7 @@ import org.openide.windows.TopComponent;
 )
 @DataObject.Registration(
 		mimeType = "text/x-srclang",
-		iconBase = "com/iconmaster/srcplugin/file/src-icon.png",
+		iconBase = "com/iconmaster/srcplugin/src-icon.png",
 		displayName = "#LBL_Source_LOADER",
 		position = 300
 )
