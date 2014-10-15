@@ -43,12 +43,12 @@ public class SourceProjectFactory implements ProjectFactory2 {
 
 	@Override
 	public void saveProject(Project project) throws IOException, ClassCastException {
-		
+		((SourceProject)project).onSave();
 	}
 
 	@Override
-	public ProjectManager.Result isProject2(FileObject projectDirectory) {
-		return new ProjectManager.Result("Source","Source", new ImageIcon(ImageUtilities.loadImage("com/iconmaster/srcplugin/src-project-icon.png")));
+	public ProjectManager.Result isProject2(FileObject dir) {
+		return isProject(dir) ? new ProjectManager.Result("Source","Source", new ImageIcon(ImageUtilities.loadImage("com/iconmaster/srcplugin/src-project-icon.png"))) : null;
 	}
 	
 }
