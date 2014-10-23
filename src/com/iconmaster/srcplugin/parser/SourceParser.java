@@ -49,7 +49,7 @@ public class SourceParser extends Parser {
 						ex.add(new SourceException(new Range(0,1), "Unresolved import "+str));
 					}
 				}
-				SourceCompiler.compile(linker.pkg);
+				ex.addAll(SourceCompiler.compile(linker.pkg));
 				ex.addAll(TypeChecker.check(linker.pkg));
 			}
 		}
