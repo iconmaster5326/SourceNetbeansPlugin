@@ -59,7 +59,7 @@ TOKEN : {
 }
 
 TOKEN : { 
-	< KEYWORD: "local" | "function" | "and" | "or" | "not" | "for" | "in" | "as" | "return" | "break" | "struct" | "if" | "else" | "elseif" | "while" | "repeat" | "until" | "field" | "package" | "import" | "struct" | "enum" | "true" | "false" | "iterator" | "this" | "extends" >
+	< KEYWORD: "local" | "function" | "and" | "or" | "not" | "for" | "in" | "as" | "return" | "break" | "struct" | "if" | "else" | "elseif" | "while" | "repeat" | "until" | "field" | "package" | "import" | "struct" | "enum" | "true" | "false" | "iterator" | "this" | "extends" | "to" >
 }
 
 TOKEN : { 
