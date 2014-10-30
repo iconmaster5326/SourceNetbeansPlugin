@@ -1,7 +1,6 @@
 package com.iconmaster.srcplugin.parser;
 
 import com.iconmaster.source.compile.SourceCompiler;
-import com.iconmaster.source.compile.TypeChecker;
 import com.iconmaster.source.element.Element;
 import com.iconmaster.source.exception.SourceException;
 import com.iconmaster.source.link.Linker;
@@ -50,7 +49,6 @@ public class SourceParser extends Parser {
 					}
 				}
 				ex.addAll(SourceCompiler.compile(linker.pkg));
-				ex.addAll(TypeChecker.check(linker.pkg));
 			}
 		}
 	}
