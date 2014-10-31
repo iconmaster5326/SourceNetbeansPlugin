@@ -41,7 +41,7 @@
 				<file name="com-iconmaster-srcplugin-parser-SourceParserFactory.instance"/>
                 <file name="com-iconmaster-srcplugin-parser-SourceErrorTaskFactory.instance"/>
 				<file name="com-iconmaster-srcplugin-editor-SourceBreakInterceptorFactory.instance"/>
-				<!--<file name="com-iconmaster-srcplugin-editor-SourceIndentFactory.instance"/>-->
+				<file name="com-iconmaster-srcplugin-editor-SourceReformatFactory.instance"/>
             </folder>
         </folder>
     </folder>

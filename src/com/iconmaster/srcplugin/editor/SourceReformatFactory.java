@@ -1,10 +1,16 @@
 package com.iconmaster.srcplugin.editor;
 
+import com.iconmaster.source.element.Element;
+import com.iconmaster.source.exception.SourceException;
+import com.iconmaster.source.parse.Parser;
+import com.iconmaster.source.tokenize.Tokenizer;
+import com.iconmaster.source.util.SourceDecompiler;
+import java.util.ArrayList;
 import javax.swing.text.BadLocationException;
 import org.netbeans.modules.editor.indent.spi.Context;
 import org.netbeans.modules.editor.indent.spi.ExtraLock;
 import org.netbeans.modules.editor.indent.spi.ReformatTask;
-import org.openide.awt.StatusDisplayer;
+import org.openide.util.Exceptions;
 
 /**
  *
@@ -26,8 +32,16 @@ public class SourceReformatFactory implements ReformatTask.Factory {
 
 		@Override
 		public void reformat() throws BadLocationException {
-			String toFormat = ctx.document().getText(ctx.startOffset(), ctx.endOffset());
-			StatusDisplayer.getDefault().setStatusText(toFormat);
+			try {
+				String toFormat = ctx.document().getText(ctx.startOffset(), ctx.endOffset());
+				ArrayList<Element> parse = Tokenizer.tokenize(toFormat);
+				parse = Parser.parse(parse);
+				String output = SourceDecompiler.elementsToString(parse);
+				ctx.document().remove(ctx.startOffset(), ctx.endOffset()-ctx.startOffset());
+				ctx.document().insertString(ctx.startOffset(), output, null);
+			} catch (SourceException ex) {
+				Exceptions.printStackTrace(ex);
+			}
 		}
 
 		@Override
