@@ -1,13 +1,9 @@
 package com.iconmaster.srcplugin.parser;
 
-import com.iconmaster.source.compile.SourceCompiler;
+import com.iconmaster.source.Source;
+import com.iconmaster.source.SourceOutput;
 import com.iconmaster.source.element.Element;
 import com.iconmaster.source.exception.SourceException;
-import com.iconmaster.source.link.Linker;
-import com.iconmaster.source.prototype.Prototyper;
-import com.iconmaster.source.tokenize.Tokenizer;
-import com.iconmaster.source.util.Range;
-import com.iconmaster.source.validate.Validator;
 import java.util.ArrayList;
 import javax.swing.event.ChangeListener;
 import org.netbeans.modules.parsing.api.Snapshot;
@@ -30,27 +26,8 @@ public class SourceParser extends Parser {
 		input = snapshot.getText().toString();
 		parsed = null;
 		ex.clear();
-		try {
-			parsed = com.iconmaster.source.parse.Parser.parse(Tokenizer.tokenize(input));
-		} catch (SourceException ex2) {
-			ex.add(ex2);
-		}
-		
-		if (parsed != null) {
-			ArrayList<SourceException> valErr = Validator.validate(parsed);
-			ex.addAll(valErr);
-			if (valErr.isEmpty()) {
-				Prototyper.PrototypeResult pres = Prototyper.prototype(parsed);
-				ex.addAll(pres.errors);
-				Linker linker = Linker.link("HPPL", pres.result);
-				if (!linker.unresolvedImports.isEmpty()) {
-					for (String str : linker.unresolvedImports) {
-						ex.add(new SourceException(new Range(0,1), "Unresolved import "+str));
-					}
-				}
-				ex.addAll(SourceCompiler.compile(linker.pkg));
-			}
-		}
+		SourceOutput so = Source.compile(input, "HPPL", System.out);
+		ex.addAll(so.errs);
 	}
 
 	@Override
