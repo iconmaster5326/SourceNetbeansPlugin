@@ -3,6 +3,8 @@ package com.iconmaster.srcplugin.parser;
 import com.iconmaster.source.element.Element;
 import com.iconmaster.source.exception.SourceException;
 import com.iconmaster.source.exception.SourceSafeModeException;
+import com.iconmaster.source.exception.SourceUndefinedFunctionException;
+import com.iconmaster.source.exception.SourceUndefinedVariableException;
 import com.iconmaster.source.tokenize.Tokenizer;
 import java.util.ArrayList;
 import java.util.List;
@@ -67,6 +69,44 @@ class SourceErrorTask extends ParserResultTask {
 									document.insertString(dlow.getOffset()+offset, " as ?", null);
 									ci.add(null, document.createPosition(dlow.getOffset()+offset+4), document.createPosition(dlow.getOffset()+offset+5));
 								}
+								return ci;
+							}
+
+						});
+					} else if (e instanceof SourceUndefinedVariableException) {
+						fixes.add(new Fix() {
+
+							@Override
+							public String getText() {
+								return "Define "+((SourceUndefinedVariableException)e).var;
+							}
+
+							@Override
+							public ChangeInfo implement() throws Exception {
+								ChangeInfo ci = new ChangeInfo();
+								int offset = 0;
+								document.insertString(dlow.getOffset()+offset, "local ", null);
+								//ci.add(null, document.createPosition(dlow.getOffset()+offset+4), document.createPosition(dlow.getOffset()+offset+5));
+								return ci;
+							}
+
+						});
+					} else if (e instanceof SourceUndefinedFunctionException) {
+						fixes.add(new Fix() {
+
+							@Override
+							public String getText() {
+								return "Create function "+((SourceUndefinedFunctionException)e).var;
+							}
+
+							@Override
+							public ChangeInfo implement() throws Exception {
+								ChangeInfo ci = new ChangeInfo();
+								String var = ((SourceUndefinedFunctionException)e).var;
+								int offset = document.getEndPosition().getOffset()-1;
+								String add = "\n\nfunction "+var+"() {\n\t\n}";
+								document.insertString(offset, add, null);
+								ci.add(null, document.createPosition(offset+add.length()-2), document.createPosition(offset+add.length()-2));
 								return ci;
 							}
 
