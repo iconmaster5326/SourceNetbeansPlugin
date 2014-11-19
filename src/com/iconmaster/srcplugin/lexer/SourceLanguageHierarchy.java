@@ -27,6 +27,7 @@ public class SourceLanguageHierarchy extends LanguageHierarchy<SourceTokenId> {
 			new SourceTokenId("WORD_E", "error", SourceParserConstants.WORD_E),
 			new SourceTokenId("NUMBER", "number", SourceParserConstants.NUMBER),
 			new SourceTokenId("STRING", "string", SourceParserConstants.STRING),
+			new SourceTokenId("CHAR", "string", SourceParserConstants.CHAR),
 			new SourceTokenId("SYMBOL", "symbol", SourceParserConstants.SYMBOL),
 		});
 		idToToken = new HashMap<Integer, SourceTokenId>();

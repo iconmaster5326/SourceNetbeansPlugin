@@ -29,7 +29,9 @@ public interface SourceParserConstants {
   /** RegularExpression Id. */
   int STRING = 9;
   /** RegularExpression Id. */
-  int SYMBOL = 10;
+  int CHAR = 10;
+  /** RegularExpression Id. */
+  int SYMBOL = 11;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -46,6 +48,7 @@ public interface SourceParserConstants {
     "<WORD_E>",
     "<NUMBER>",
     "<STRING>",
+    "<CHAR>",
     "<SYMBOL>",
   };
 
