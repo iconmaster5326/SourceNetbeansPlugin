@@ -1,6 +1,7 @@
 package com.iconmaster.srcplugin.parser;
 
 import com.iconmaster.source.Source;
+import com.iconmaster.source.SourceOptions;
 import com.iconmaster.source.SourceOutput;
 import com.iconmaster.source.element.Element;
 import com.iconmaster.source.exception.SourceException;
@@ -26,7 +27,7 @@ public class SourceParser extends Parser {
 		input = snapshot.getText().toString();
 		parsed = null;
 		ex.clear();
-		SourceOutput so = Source.compile(input, "HPPL", System.out);
+		SourceOutput so = Source.execute(new SourceOptions(input, "HPPL", false));
 		ex.addAll(so.errs);
 	}
 
