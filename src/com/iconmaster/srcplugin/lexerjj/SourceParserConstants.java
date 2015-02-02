@@ -15,23 +15,25 @@ public interface SourceParserConstants {
   /** RegularExpression Id. */
   int COMMENT = 2;
   /** RegularExpression Id. */
-  int DIRECTIVE = 3;
+  int BLOCK_COMMENT = 3;
   /** RegularExpression Id. */
-  int KEYWORD = 4;
+  int DIRECTIVE = 4;
   /** RegularExpression Id. */
-  int WORD = 5;
+  int KEYWORD = 5;
   /** RegularExpression Id. */
-  int WORD_B = 6;
+  int WORD = 6;
   /** RegularExpression Id. */
-  int WORD_E = 7;
+  int WORD_B = 7;
   /** RegularExpression Id. */
-  int NUMBER = 8;
+  int WORD_E = 8;
   /** RegularExpression Id. */
-  int STRING = 9;
+  int NUMBER = 9;
   /** RegularExpression Id. */
-  int CHAR = 10;
+  int STRING = 10;
   /** RegularExpression Id. */
-  int SYMBOL = 11;
+  int CHAR = 11;
+  /** RegularExpression Id. */
+  int SYMBOL = 12;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -41,6 +43,7 @@ public interface SourceParserConstants {
     "<EOF>",
     "<WHITESPACE>",
     "<COMMENT>",
+    "<BLOCK_COMMENT>",
     "<DIRECTIVE>",
     "<KEYWORD>",
     "<WORD>",

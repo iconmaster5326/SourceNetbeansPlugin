@@ -20,6 +20,7 @@ public class SourceLanguageHierarchy extends LanguageHierarchy<SourceTokenId> {
 			new SourceTokenId("EOF", "whitespace", SourceParserConstants.EOF),
 			new SourceTokenId("WHITESPACE", "whitespace", SourceParserConstants.WHITESPACE),
 			new SourceTokenId("COMMENT", "comment", SourceParserConstants.COMMENT),
+			new SourceTokenId("BLOCK_COMMENT", "comment", SourceParserConstants.BLOCK_COMMENT),
 			new SourceTokenId("DIRECTIVE", "directive", SourceParserConstants.DIRECTIVE),
 			new SourceTokenId("KEYWORD", "keyword", SourceParserConstants.KEYWORD),
 			new SourceTokenId("WORD", "word", SourceParserConstants.WORD),
